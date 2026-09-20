@@ -21,7 +21,7 @@
 !/scripts/cf-collect.sh
 !/scripts/cf-distill.sh
 !/scripts/cf-env.sh
-!/scripts/cf-tw-grpo.sh
+!/scripts/er-tw-grpo.sh
 !/scripts/zero3_offload.json
 !/setup.py
 !/src/open_r1/__init__.py

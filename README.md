@@ -68,7 +68,7 @@ export CF_TRAIN_DATA=/path/to/train.json
 CUDA_VISIBLE_DEVICES=0 bash scripts/cf-collect.sh
 
 # 2. Train TW-GRPO with local evidence supervision (2 GPUs).
-CUDA_VISIBLE_DEVICES=0,1 bash scripts/cf-tw-grpo.sh
+CUDA_VISIBLE_DEVICES=0,1 bash scripts/er-tw-grpo.sh
 
 # 3. Distill from the completed main-training checkpoint (2 GPUs).
 CF_MODEL=/path/to/Qwen2.5-VL-main-checkpoint \
