@@ -22,9 +22,13 @@
 
 ![Focused thinking, soft rewards, and evidence repair](assets/teaser.png)
 
+*Focused thinking, soft rewards, and evidence repair provide complementary supervision.*
+
 ## Method
 
 ![Evidence alignment, matched replay, local learning, and distillation](assets/framework.png)
+
+*Accepted repairs support local evidence learning and subsequent response distillation.*
 
 ## Focused thinking
 
@@ -33,21 +37,33 @@
 
 ![Uniform and importance-weighted tokens](assets/token-weighting.png)
 
+*Token weighting emphasizes informative positions instead of treating all tokens equally.*
+
 ![Frequent tokens at high-weight positions](assets/token-focus.png)
 
+*High-weight positions frequently contain object, event, and temporal terms.*
+
 ![Token weighting at steps 0 and 500](assets/token-weights.png)
+
+*Token emphasis shifts toward collision descriptions over 500 training steps.*
 
 ### Positional weights
 
 ![Positional weighting across 300 training samples](assets/weight-map.png)
 
+*Positional weights vary across the first 300 training samples.*
+
 ### Score dynamics
 
 ![Content-position score dynamics with exponential smoothing](assets/score-dynamics.png)
 
+*Content-position scores evolve during training; the blue curve shows their smoothed trend.*
+
 ### Token examples
 
 ![Highlighted object, event, and answer tokens](assets/token-examples.png)
+
+*Darker red highlights greater weights on object, event, and answer tokens.*
 
 </details>
 
@@ -55,9 +71,13 @@
 
 ![Matched replay and evidence-only supervision](assets/matched-replay.png)
 
+*Replacing one evidence slot triggers descendant replay and evidence-only supervision.*
+
 ### Repair example
 
 ![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
+
+*A transferred motion observation recovers answer A while preserving the cached B branch.*
 
 ## Results
 
@@ -92,6 +112,8 @@
 
 ![Reward dispersion and response length before distillation](assets/training-dynamics.png)
 
+*Reward dispersion and response length across 500 steps, before distillation.*
+
 ## Reasoning examples
 
 <details>
@@ -99,13 +121,19 @@
 
 ![MMVU density reasoning: Video-R1 and TW-GRPO](assets/density-reasoning.png)
 
+*TW-GRPO derives density from measured mass and displaced water volume.*
+
 ### Counterfactual reasoning
 
 ![CLEVRER counterfactual reasoning: Video-R1 and TW-GRPO](assets/clevrer-case.png)
 
+*Video-R1 and TW-GRPO reason differently about removing the metal cylinder.*
+
 ### Answer consistency
 
 ![MMVU rationale and final-answer consistency: Video-R1 and TW-GRPO](assets/mmvu-case.png)
+
+*TW-GRPO keeps its rationale and final answer consistent in this example.*
 
 </details>
 
