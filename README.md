@@ -10,53 +10,22 @@
 
 ## Contents
 
-1. [Results](#results)
-2. [Method](#method)
+1. [Method](#method)
+2. [Focused thinking](#focused-thinking)
 3. [Evidence repair](#evidence-repair)
-4. [Training dynamics](#training-dynamics)
-5. [Focused thinking](#focused-thinking)
+4. [Results](#results)
+5. [Training dynamics](#training-dynamics)
 6. [Reasoning examples](#reasoning-examples)
 7. [Core code](#core-code)
 8. [Quick start](#quick-start)
 
 ![Focused thinking, soft rewards, and evidence repair](assets/teaser.png)
 
-## Results
-
-**1,000 training questions · +4.84 pp CLEVRER exact accuracy · Single-response inference**
-
-CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
-
-| Method | CLEVRER | NExT-GQA | MMVU-MC | MVBench | TempCompass |
-|:--|--:|--:|--:|--:|--:|
-| TW-GRPO | 50.4 | 76.1 | 65.8 | 63.3 | 73.3 |
-| **ER-TW-GRPO** | **55.2** | **77.8** | **65.9** | **64.4** | **73.3** |
-
-<sub>Accuracy (%), paper Table I. TW-GRPO: conference reference; ER-TW-GRPO: seed 42, 1K questions and 500 base RL steps plus auxiliary learning and distillation.</sub>
-
 ## Method
 
 ![Evidence alignment, matched replay, local learning, and distillation](assets/framework.png)
 
 Transfer supported observations between failed responses. Replay affected reasoning. Learn from successful repairs.
-
-## Evidence repair
-
-Replace one observation; replay only affected reasoning.
-
-![Matched replay and evidence-only supervision](assets/matched-replay.png)
-
-### Repair in action
-
-One repaired observation recovers the complete answer in this schematic example.
-
-![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
-
-## Training dynamics
-
-Compared with TW-GRPO: lower late-stage reward dispersion and mostly shorter responses.
-
-![Reward dispersion and response length before distillation](assets/training-dynamics.png)
 
 ## Focused thinking
 
@@ -86,6 +55,37 @@ TW-GRPO emphasizes object, event, and temporal tokens.
 <sub>Darker red means greater weight, not verified visual correctness.</sub>
 
 </details>
+
+## Evidence repair
+
+Replace one observation; replay only affected reasoning.
+
+![Matched replay and evidence-only supervision](assets/matched-replay.png)
+
+### Repair in action
+
+One repaired observation recovers the complete answer in this schematic example.
+
+![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
+
+## Results
+
+**1,000 training questions · +4.84 pp CLEVRER exact accuracy · Single-response inference**
+
+CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
+
+| Method | CLEVRER | NExT-GQA | MMVU-MC | MVBench | TempCompass |
+|:--|--:|--:|--:|--:|--:|
+| TW-GRPO | 50.4 | 76.1 | 65.8 | 63.3 | 73.3 |
+| **ER-TW-GRPO** | **55.2** | **77.8** | **65.9** | **64.4** | **73.3** |
+
+<sub>Accuracy (%), paper Table I. TW-GRPO: conference reference; ER-TW-GRPO: seed 42, 1K questions and 500 base RL steps plus auxiliary learning and distillation.</sub>
+
+## Training dynamics
+
+Compared with TW-GRPO: lower late-stage reward dispersion and mostly shorter responses.
+
+![Reward dispersion and response length before distillation](assets/training-dynamics.png)
 
 ## Reasoning examples
 
