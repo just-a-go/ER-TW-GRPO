@@ -45,13 +45,9 @@
 
 ![Content-position score dynamics with exponential smoothing](assets/score-dynamics.png)
 
-<sub>Conference scales, not final weights or calibrated KL.</sub>
-
 ### Token examples
 
 ![Highlighted object, event, and answer tokens](assets/token-examples.png)
-
-<sub>Red intensity: token weight, not correctness.</sub>
 
 </details>
 
