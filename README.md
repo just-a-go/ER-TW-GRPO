@@ -63,10 +63,6 @@
 
 ## Results
 
-**1K questions · +4.84 pp CLEVRER (3 seeds) · Single-response inference**
-
-<sub>Accuracy (%). pp: percentage points. n/r: unreported.</sub>
-
 | Method | Training | CLEVRER | NExT-GQA | MMVU-MC | MVBench | TempCompass |
 | :-- | :-- | --: | --: | --: | --: | --: |
 | ER-TW-GRPO (ours) | 1K RL + auxiliary | **55.2** | **77.8** | **65.9** | **64.4** | **73.3** |
