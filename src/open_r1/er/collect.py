@@ -1,6 +1,6 @@
 """Budgeted collection of dependency-constrained visual evidence repairs.
 
-Run with ``python -m open_r1.cf.collect --help``. Labels are retained only by
+Run with ``python -m open_r1.er.collect --help``. Labels are retained only by
 the external scorer; no model-call builder receives a dataset row or a label.
 """
 
@@ -454,7 +454,7 @@ def main(argv=None):
     (output / "audit").mkdir()
     # The inherited reward module initializes loggers on import. Keep this round separate.
     os.environ.setdefault("PRIVATE_DATA_ROOT", str(output))
-    os.environ.setdefault("WANDB_NAME", "cf-collector")
+    os.environ.setdefault("WANDB_NAME", "er-collector")
     os.environ["DEBUG_MODE"] = "false"
     os.environ.setdefault("SAMPLE_MODE", "true")
     vendored_vision()  # Establish vendor precedence before grpo imports its trainer.
@@ -511,7 +511,7 @@ def main(argv=None):
             except (OSError, ValueError, TypeError, KeyError, ProtocolError) as error:
                 collector.stats["questions_rejected"] += 1
                 write_json(output / "audit" / f"{key}.json", {"status": "rejected", "reason": str(error)})
-            print(f"CF question {index + 1}/{len(rows)}: accepted={collector.stats['repairs_accepted']}", flush=True)
+            print(f"ER question {index + 1}/{len(rows)}: accepted={collector.stats['repairs_accepted']}", flush=True)
         manifest["status"] = "complete"
     except Exception:
         manifest["status"] = "failed"

@@ -34,8 +34,8 @@ Transfer supported observations between failed responses. Replay affected reason
 | Core | Source |
 |:--|:--|
 | Token-weighted GRPO | [Trainer](src/open_r1/trainer/grpo_trainer.py) · [Rewards](src/open_r1/grpo.py) |
-| Evidence repair | [Replay](src/open_r1/cf/core.py) · [Collection](src/open_r1/cf/collect.py) |
-| Local learning & distillation | [Supervision](src/open_r1/cf/supervision.py) · [Trainer](src/open_r1/trainer/cf_trainer.py) · [Distillation](src/open_r1/cf/distill.py) |
+| Evidence repair | [Replay](src/open_r1/er/core.py) · [Collection](src/open_r1/er/collect.py) |
+| Local learning & distillation | [Supervision](src/open_r1/er/supervision.py) · [Trainer](src/open_r1/trainer/er_trainer.py) · [Distillation](src/open_r1/er/distill.py) |
 
 ## Quick start
 
@@ -61,21 +61,21 @@ Provide a local Qwen2.5-VL checkpoint and JSON/JSONL training data with absolute
 ```
 
 ```bash
-export CF_MODEL=/path/to/Qwen2.5-VL-7B-Instruct
-export CF_TRAIN_DATA=/path/to/train.json
+export ER_MODEL=/path/to/Qwen2.5-VL-7B-Instruct
+export ER_TRAIN_DATA=/path/to/train.json
 
 # 1. Collect evidence from the frozen checkpoint.
-CUDA_VISIBLE_DEVICES=0 bash scripts/cf-collect.sh
+CUDA_VISIBLE_DEVICES=0 bash scripts/er-collect.sh
 
 # 2. Train TW-GRPO with local evidence supervision (2 GPUs).
 CUDA_VISIBLE_DEVICES=0,1 bash scripts/er-tw-grpo.sh
 
 # 3. Distill from the completed main-training checkpoint (2 GPUs).
-CF_MODEL=/path/to/Qwen2.5-VL-main-checkpoint \
-  CUDA_VISIBLE_DEVICES=0,1 bash scripts/cf-distill.sh
+ER_MODEL=/path/to/Qwen2.5-VL-main-checkpoint \
+  CUDA_VISIBLE_DEVICES=0,1 bash scripts/er-distill.sh
 ```
 
-Keep `Qwen2.5-VL` in checkpoint directory names. Launchers use development defaults (2K collection questions, epoch-based training); configure the subset and budgets for the paper's 1K/500-step protocol. `CF_LAMBDA=0` selects TW-GRPO without local learning. The `eval` install extra supplies `math-verify`, imported by the training entry point.
+Keep `Qwen2.5-VL` in checkpoint directory names. Launchers use development defaults (2K collection questions, epoch-based training); configure the subset and budgets for the paper's 1K/500-step protocol. `ER_LAMBDA=0` selects TW-GRPO without local learning. The `eval` install extra supplies `math-verify`, imported by the training entry point.
 
 </details>
 

@@ -88,9 +88,9 @@ class GRPOModelConfig(ModelConfig):
     use_epsilon: bool = False
     use_dynamic_sampling: bool = False
     train_samples: int = 2000
-    cf_local_data: Optional[str] = None
-    cf_lambda: float = 0.0
-    cf_local_batch_size: int = 1
+    er_local_data: Optional[str] = None
+    er_lambda: float = 0.0
+    er_local_batch_size: int = 1
 
 def accuracy_reward(completions, solution, **kwargs):
     """
@@ -379,16 +379,16 @@ def main(script_args, training_args, model_args):
     # import pdb; pdb.set_trace()
 
     trainer_cls = Qwen2VLGRPOTrainer
-    cf_kwargs = {}
-    if not math.isfinite(model_args.cf_lambda) or model_args.cf_lambda < 0:
-        raise ValueError("cf_lambda must be finite and nonnegative")
-    if model_args.cf_lambda > 0:
-        from open_r1.trainer.cf_trainer import CFQwen2VLGRPOTrainer
-        trainer_cls = CFQwen2VLGRPOTrainer
-        cf_kwargs = dict(
-            cf_local_data=model_args.cf_local_data,
-            cf_lambda=model_args.cf_lambda,
-            cf_local_batch_size=model_args.cf_local_batch_size,
+    er_kwargs = {}
+    if not math.isfinite(model_args.er_lambda) or model_args.er_lambda < 0:
+        raise ValueError("er_lambda must be finite and nonnegative")
+    if model_args.er_lambda > 0:
+        from open_r1.trainer.er_trainer import ERQwen2VLGRPOTrainer
+        trainer_cls = ERQwen2VLGRPOTrainer
+        er_kwargs = dict(
+            er_local_data=model_args.er_local_data,
+            er_lambda=model_args.er_lambda,
+            er_local_batch_size=model_args.er_local_batch_size,
         )
 
     # Initialize the GRPO trainer
@@ -406,7 +406,7 @@ def main(script_args, training_args, model_args):
         attn_implementation=model_args.attn_implementation,
         max_pixels=script_args.max_pixels,
         min_pixels=script_args.min_pixels,
-        **cf_kwargs,
+        **er_kwargs,
     )
 
     # Train and push the model to the Hub

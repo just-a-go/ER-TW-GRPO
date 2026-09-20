@@ -1,6 +1,6 @@
-"""Ordinary complete-response SFT after CF + TW-GRPO training.
+"""Ordinary complete-response SFT after ER + TW-GRPO training.
 
-Run with ``python -m open_r1.cf.distill`` and Transformers TrainingArguments.
+Run with ``python -m open_r1.er.distill`` and Transformers TrainingArguments.
 Only collector ``kind=distill`` records with unit weights are accepted.
 """
 
@@ -12,7 +12,7 @@ from transformers import (
     Qwen2_5_VLForConditionalGeneration, Trainer, TrainingArguments,
 )
 
-from open_r1.cf.supervision import EvidenceCollator, RepairDataset, weighted_sequence_nll
+from open_r1.er.supervision import EvidenceCollator, RepairDataset, weighted_sequence_nll
 
 
 @dataclass

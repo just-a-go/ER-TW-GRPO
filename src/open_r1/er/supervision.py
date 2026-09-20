@@ -116,7 +116,7 @@ def target_token_mask(token_ids, offsets, start, end, special_ids=()):
 def _load_vision(messages):
     # The pinned baseline process_vision_info is video-only and returns a list.
     # Use its underlying loaders directly for a standard image/video chat schema.
-    from open_r1.cf.backend import vendored_vision
+    from open_r1.er.backend import vendored_vision
 
     vision = vendored_vision()
 
