@@ -161,6 +161,23 @@ Checkpoint names must contain `Qwen2.5-VL`. Defaults: 2K collection questions, e
 
 ## Acknowledgements
 
-Thanks to [TW-GRPO](https://github.com/longmalongma/TW-GRPO), [Open R1](https://github.com/huggingface/open-r1), [Qwen-VL](https://github.com/QwenLM/Qwen2-VL), and the dataset authors.
+Special thanks to **[Reinforcing Video Reasoning with Focused Thinking](https://arxiv.org/abs/2505.24718) (ECCV 2026)**, the foundation of this extension, and its [TW-GRPO code](https://github.com/longmalongma/TW-GRPO).
+
+<details>
+<summary>Cite the ECCV paper · BibTeX</summary>
+
+```bibtex
+@inproceedings{dang2026twgrpo,
+  author        = {Jisheng Dang and Jingze Wu and Teng Wang and Xuanhui Lin and Nannan Zhu and Hongbo Chen and Wei-Shi Zheng and Meng Wang and Tat-Seng Chua},
+  title         = {Reinforcing Video Reasoning with Focused Thinking},
+  booktitle     = {European Conference on Computer Vision (ECCV)},
+  year          = {2026},
+  url           = {https://arxiv.org/abs/2505.24718}
+}
+```
+
+</details>
+
+Thanks also to [Open R1](https://github.com/huggingface/open-r1), [Qwen-VL](https://github.com/QwenLM/Qwen2-VL), and the dataset authors.
 
 [Apache-2.0](LICENSE).
