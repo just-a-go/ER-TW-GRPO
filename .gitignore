@@ -36,3 +36,14 @@
 !/src/open_r1/trainer/er_trainer.py
 !/src/open_r1/trainer/grpo_config.py
 !/src/open_r1/trainer/grpo_trainer.py
+!/assets/clevrer-case.png
+!/assets/density-reasoning.png
+!/assets/evidence-repair.png
+!/assets/matched-replay.png
+!/assets/mmvu-case.png
+!/assets/score-dynamics.png
+!/assets/token-examples.png
+!/assets/token-focus.png
+!/assets/token-weights.png
+!/assets/training-dynamics.png
+!/assets/weight-map.png

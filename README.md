@@ -6,7 +6,7 @@
 
 **Focus on key tokens. Learn from partial answers. Repair failed evidence.**
 
-[Results](#results) · [Method](#method) · [Quick start](#quick-start)
+[Results](#results) · [Method](#method) · [Evidence repair](#evidence-repair) · [Focused thinking](#focused-thinking) · [Examples](#reasoning-examples) · [Quick start](#quick-start)
 
 </div>
 
@@ -30,6 +30,76 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 ![Evidence alignment, matched replay, local learning, and distillation](assets/framework.png)
 
 Transfer supported observations between failed responses. Replay affected reasoning. Learn from successful repairs.
+
+## Evidence repair
+
+Replace one observation; replay only affected reasoning.
+
+![Matched replay and evidence-only supervision](assets/matched-replay.png)
+
+### Repair in action
+
+One repaired observation recovers the complete answer in this schematic example.
+
+![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
+
+## Training dynamics
+
+Compared with TW-GRPO: lower late-stage reward dispersion and mostly shorter responses.
+
+![Reward dispersion and response length before distillation](assets/training-dynamics.png)
+
+## Focused thinking
+
+TW-GRPO emphasizes object, event, and temporal tokens.
+
+![Frequent tokens at high-weight positions](assets/token-focus.png)
+
+![Token weighting at steps 0 and 500](assets/token-weights.png)
+
+<details>
+<summary>More token-level views</summary>
+
+### Positional weights
+
+![Positional weighting across 300 training samples](assets/weight-map.png)
+
+### Score dynamics
+
+![Content-position score dynamics with exponential smoothing](assets/score-dynamics.png)
+
+<sub>Conference implementation scales; not final bounded weights or calibrated KL scores.</sub>
+
+### Token examples
+
+![Highlighted object, event, and answer tokens](assets/token-examples.png)
+
+<sub>Darker red means greater weight, not verified visual correctness.</sub>
+
+</details>
+
+## Reasoning examples
+
+TW-GRPO uses measured mass and displaced volume to infer density.
+
+![MMVU density reasoning: Video-R1 and TW-GRPO](assets/density-reasoning.png)
+
+<details>
+<summary>More examples: CLEVRER & MMVU</summary>
+
+### Counterfactual reasoning
+
+![CLEVRER counterfactual reasoning: Video-R1 and TW-GRPO](assets/clevrer-case.png)
+
+### Answer consistency
+
+![MMVU rationale and final-answer consistency: Video-R1 and TW-GRPO](assets/mmvu-case.png)
+
+</details>
+
+<sub>TW-GRPO examples and token visualizations are reproduced from the conference study.</sub>
+
+## Core code
 
 | Core | Source |
 |:--|:--|
