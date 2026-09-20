@@ -4,8 +4,6 @@
 
 ### Reinforcing Video Reasoning with<br>Focused Thinking and Evidence Repair
 
-**Focus on key tokens. Learn from partial answers. Repair failed evidence.**
-
 </div>
 
 ## Contents
@@ -20,7 +18,7 @@
 8. [Quick start](#quick-start)
 9. [Acknowledgements](#acknowledgements)
 
-**ECCV → TPAMI extension.** This manuscript extends our ECCV 2026 paper, *Reinforcing Video Reasoning with Focused Thinking*, with evidence repair, local evidence learning, and repair distillation.
+**TPAMI extension of *Reinforcing Video Reasoning with Focused Thinking* (ECCV 2026).**
 
 ![Focused thinking, soft rewards, and evidence repair](assets/teaser.png)
 
@@ -28,14 +26,10 @@
 
 ![Evidence alignment, matched replay, local learning, and distillation](assets/framework.png)
 
-Transfer supported observations between failed responses. Replay affected reasoning. Learn from successful repairs.
-
 ## Focused thinking
 
 <details>
-<summary>ECCV foundation · TW-GRPO & token visualizations</summary>
-
-TW-GRPO emphasizes object, event, and temporal tokens.
+<summary>ECCV · Focused thinking</summary>
 
 ![Frequent tokens at high-weight positions](assets/token-focus.png)
 
@@ -49,35 +43,29 @@ TW-GRPO emphasizes object, event, and temporal tokens.
 
 ![Content-position score dynamics with exponential smoothing](assets/score-dynamics.png)
 
-<sub>Conference implementation scales; not final bounded weights or calibrated KL scores.</sub>
+<sub>Conference scales, not final weights or calibrated KL.</sub>
 
 ### Token examples
 
 ![Highlighted object, event, and answer tokens](assets/token-examples.png)
 
-<sub>Darker red means greater weight, not verified visual correctness.</sub>
+<sub>Red intensity: token weight, not correctness.</sub>
 
 </details>
 
 ## Evidence repair
 
-Replace one observation; replay only affected reasoning.
-
 ![Matched replay and evidence-only supervision](assets/matched-replay.png)
 
-### Repair in action
-
-One repaired observation recovers the complete answer in this schematic example.
+### Repair example (schematic)
 
 ![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
 
 ## Results
 
-**1,000 training questions · +4.84 pp CLEVRER exact accuracy · Single-response inference**
+**1K questions · +4.84 pp CLEVRER (3 seeds) · Single-response inference**
 
-CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
-
-<sub>All seven main-paper tables are reproduced below. Accuracy (%); pp = percentage points; n/r = unreported.</sub>
+<sub>Accuracy (%). pp: percentage points. n/r: unreported.</sub>
 
 ### I. Five-benchmark comparison
 
@@ -86,7 +74,7 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | ER-TW-GRPO (ours) | 1K RL + auxiliary | **55.2** | **77.8** | **65.9** | **64.4** | **73.3** |
 
 <details>
-<summary>ECCV reference results · 15 settings</summary>
+<summary>ECCV · Baselines</summary>
 
 | Method | Training | CLEVRER | NExT-GQA | MMVU-MC | MVBench | TempCompass |
 | :-- | :-- | --: | --: | --: | --: | --: |
@@ -108,7 +96,7 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 
 </details>
 
-<sub>ER: seed 42, 1K questions, 500 base RL steps plus auxiliary learning and distillation. References retain their conference settings.</sub>
+<sub>ER: seed 42; 1K questions, 500 RL steps + auxiliary training. Baselines: conference settings.</sub>
 
 ### II. FFR comparison
 
@@ -118,10 +106,10 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | Full method | **55.20** | **66.90** | 41.39 |
 | FFR | 51.80 | 64.10 | 48.73 |
 
-<sub>CLEVRER, seed 42. Adapted FFR; local GPU-h excludes external teacher computation.</sub>
+<sub>CLEVRER, seed 42. FFR adapted; GPU-h excludes external teacher compute.</sub>
 
 <details>
-<summary>III–IV. ECCV ablations · data, rewards & token weighting</summary>
+<summary>III–IV. ECCV · Ablations</summary>
 
 ### III. Data construction
 
@@ -177,13 +165,13 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | TW-GRPO (α=0) | **64.7** | 36.6 | 60.5 | 48.6 | 62.3 | 62.1 |
 | TW-GRPO | 60.9 | **42.5** | **64.4** | **50.4** | **62.9** | **65.8** |
 
-<sub>First five metrics: CLEVRER. QAI converts NExT-GQA/STAR questions; α follows the conference parameterization.</sub>
+<sub>First five metrics: CLEVRER. α: conference parameterization.</sub>
 
 </details>
 
 ### V. Component ablations
 
-#### A. Primary and component comparisons: seeds 42, 123, and 2026
+#### A. Three seeds: 42, 123, 2026
 
 | Method | Local learning | SFT target source | All exact | All soft | Single exact | Multi exact | Multi soft |
 | :-- | :-- | :-- | --: | --: | --: | --: | --: |
@@ -192,7 +180,7 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | + local evidence learning | On | None | 51.85 ± 0.46 | 64.27 ± 0.17 | 62.24 ± 0.41 | 44.11 ± 0.87 | 65.78 ± 0.49 |
 | Full method | On | Repaired | **55.19 ± 0.44** | **67.20 ± 0.39** | **64.13 ± 0.23** | **48.53 ± 0.67** | **69.49 ± 0.51** |
 
-#### B. Component analysis: seed 42, shared fixed repair corpus
+#### B. Seed 42 · Fixed repair corpus
 
 | Method | Local learning | SFT target source | All exact | All soft | Single exact | Multi exact | Multi soft |
 | :-- | :-- | :-- | --: | --: | --: | --: | --: |
@@ -202,7 +190,7 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | + local evidence learning | On | None | 52.32 | 64.47 | 62.00 | 45.10 | 66.30 |
 | Full method | On | Repaired | **55.20** | **66.90** | **63.93** | **48.69** | **69.11** |
 
-#### C. Paired overall exact-accuracy contrasts
+#### C. Paired exact-accuracy gains
 
 | Contrast | Seed 42 | Seed 123 | Seed 2026 | Mean ± SD | Paired 95% CI |
 | :-- | --: | --: | --: | --: | --: |
@@ -210,7 +198,7 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | Full - repair distillation | 2.71 | 3.69 | 3.16 | 3.19 ± 0.49 | [2.04, 4.34] |
 | Interaction I | 1.27 | 2.13 | 1.67 | 1.69 ± 0.43 | [0.28, 3.10] |
 
-<sub>9,238 CLEVRER questions. A: mean ± sample SD. B: seed 42. C: pp gains with paired 95% video-cluster bootstrap intervals; contrasts computed before rounding.</sub>
+<sub>CLEVRER: 9,238 questions. A: mean ± sample SD. C: pp; paired 95% video-cluster bootstrap CIs; gains before rounding.</sub>
 
 ### VI. Evidence sources
 
@@ -220,11 +208,11 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | Fresh-slot + TW-GRPO | Independent resampling | 52.16 | 65.21 | 62.43 | 44.51 | 67.28 |
 | ER - fresh |  | +3.04 | +1.69 | +1.50 | +4.18 | +1.83 |
 
-<sub>Seed 42; same local-learning and distillation recipe. Differences in pp.</sub>
+<sub>Seed 42; matched training recipe. Differences: pp.</sub>
 
 ### VII. Repair mechanism
 
-#### A. Repair sources and visual screening
+#### A. Sources & screening
 
 | Variant | Rescued/N (%) | Accepted repairs | Evidence precision (%) | Total GPU-s |
 | :-- | --: | --: | --: | --: |
@@ -233,27 +221,23 @@ CLEVRER: **50.35 → 55.19%**, averaged over three seeds.
 | Aligned repair, no visual screen | **25/97 (25.77)** | **32** | 12/18 (66.67) | **2881** |
 | Full aligned evidence repair | 18/97 (18.56) | 21 | **15/17 (88.24)** | 3246 |
 
-#### B. Execution under identical proposed evidence substitutions
+#### B. Fixed evidence substitutions
 
 | Execution | Original exact (%) | Replacement exact (%) | Net gain (pp) | Gain 95% CI (pp) | Evidence-use violations (%) | Total GPU-s |
 | :-- | --: | --: | --: | --: | --: | --: |
 | Restricted receiver graph | 0 | 13.33 | **13.33** | [8.07, 18.60] | **1/50 (2.00)** | **2885** |
 | Free re-answering | 14.17 | **22.92** | 8.75 | [1.88, 15.62] | 9/50 (18.00) | 3967 |
 
-<sub>A: N = 97 all-failed questions. B: 240 fixed substitutions. Precision = supported/audited; violations = violating/audited. GPU-s includes all attributed computation; n/a = not applicable. Within-protocol CIs do not establish a between-protocol difference.</sub>
+<sub>A: N = 97 all-failed questions. B: 240 substitutions. Precision/violations: audited records. GPU-s: total compute. n/a: not applicable. CIs: within-protocol.</sub>
 
 ## Training dynamics
-
-Compared with TW-GRPO: lower late-stage reward dispersion and mostly shorter responses.
 
 ![Reward dispersion and response length before distillation](assets/training-dynamics.png)
 
 ## Reasoning examples
 
 <details>
-<summary>ECCV examples · density, counterfactual reasoning & answer consistency</summary>
-
-TW-GRPO uses measured mass and displaced volume to infer density.
+<summary>ECCV · Reasoning examples</summary>
 
 ![MMVU density reasoning: Video-R1 and TW-GRPO](assets/density-reasoning.png)
 
@@ -277,12 +261,12 @@ TW-GRPO uses measured mass and displaced volume to infer density.
 
 ## Quick start
 
-**Hardware:** 2 × NVIDIA A100 · BF16 · DeepSpeed ZeRO-3 with CPU offload.
+**2 × NVIDIA A100 · BF16 · ZeRO-3 CPU offload**
 
 <details>
 <summary>Install and train</summary>
 
-Linux · Python 3.10.9+ · CUDA. Install PyTorch 2.5.1 and torchvision 0.20.1 for your CUDA environment first.
+Linux · Python 3.10.9+ · CUDA. Preinstall PyTorch 2.5.1 + torchvision 0.20.1.
 
 ```bash
 git clone https://github.com/just-a-go/ER-TW-GRPO.git
@@ -292,7 +276,7 @@ pip install -e './qwen-vl-utils[decord]'
 pip install flash-attn==2.7.4.post1 --no-build-isolation
 ```
 
-Provide a local Qwen2.5-VL checkpoint and JSON/JSONL training data with absolute video paths:
+Local Qwen2.5-VL checkpoint; JSON/JSONL data; absolute video paths:
 
 ```json
 {"problem": "Which statements are true? A. ... B. ...", "video": "/path/to/video.mp4", "solution": "<answer>A,B</answer>"}
@@ -302,23 +286,23 @@ Provide a local Qwen2.5-VL checkpoint and JSON/JSONL training data with absolute
 export ER_MODEL=/path/to/Qwen2.5-VL-7B-Instruct
 export ER_TRAIN_DATA=/path/to/train.json
 
-# 1. Collect evidence from the frozen checkpoint.
+# 1. Collect
 CUDA_VISIBLE_DEVICES=0 bash scripts/er-collect.sh
 
-# 2. Train TW-GRPO with local evidence supervision (2 GPUs).
+# 2. Train
 CUDA_VISIBLE_DEVICES=0,1 bash scripts/er-tw-grpo.sh
 
-# 3. Distill from the completed main-training checkpoint (2 GPUs).
+# 3. Distill
 ER_MODEL=/path/to/Qwen2.5-VL-main-checkpoint \
   CUDA_VISIBLE_DEVICES=0,1 bash scripts/er-distill.sh
 ```
 
-Keep `Qwen2.5-VL` in checkpoint directory names. Launchers use development defaults (2K collection questions, epoch-based training); configure the subset and budgets for the paper's 1K/500-step protocol. `ER_LAMBDA=0` selects TW-GRPO without local learning. The `eval` install extra supplies `math-verify`, imported by the training entry point.
+Checkpoint names must contain `Qwen2.5-VL`. Defaults: 2K collection questions, epoch-based training; adjust for the paper's 1K/500-step setting. `ER_LAMBDA=0`: no local learning.
 
 </details>
 
 ## Acknowledgements
 
-We thank the contributors of [TW-GRPO](https://github.com/longmalongma/TW-GRPO), [Open R1](https://github.com/huggingface/open-r1), and [Qwen-VL](https://github.com/QwenLM/Qwen2-VL), and the dataset authors for their open resources.
+Thanks to [TW-GRPO](https://github.com/longmalongma/TW-GRPO), [Open R1](https://github.com/huggingface/open-r1), [Qwen-VL](https://github.com/QwenLM/Qwen2-VL), and the dataset authors.
 
 [Apache-2.0](LICENSE).
