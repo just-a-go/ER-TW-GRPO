@@ -31,6 +31,8 @@
 <details>
 <summary>ECCV · Focused thinking</summary>
 
+![Uniform and importance-weighted tokens](assets/token-weighting.png)
+
 ![Frequent tokens at high-weight positions](assets/token-focus.png)
 
 ![Token weighting at steps 0 and 500](assets/token-weights.png)
