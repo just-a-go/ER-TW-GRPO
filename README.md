@@ -90,8 +90,6 @@
 
 </details>
 
-<sub>ER: seed 42; 1K questions, 500 RL steps + auxiliary training. Baselines: conference settings.</sub>
-
 ## Training dynamics
 
 ![Reward dispersion and response length before distillation](assets/training-dynamics.png)
