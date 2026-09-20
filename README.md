@@ -6,9 +6,18 @@
 
 **Focus on key tokens. Learn from partial answers. Repair failed evidence.**
 
-[Results](#results) · [Method](#method) · [Evidence repair](#evidence-repair) · [Focused thinking](#focused-thinking) · [Examples](#reasoning-examples) · [Quick start](#quick-start)
-
 </div>
+
+## Contents
+
+1. [Results](#results)
+2. [Method](#method)
+3. [Evidence repair](#evidence-repair)
+4. [Training dynamics](#training-dynamics)
+5. [Focused thinking](#focused-thinking)
+6. [Reasoning examples](#reasoning-examples)
+7. [Core code](#core-code)
+8. [Quick start](#quick-start)
 
 ![Focused thinking, soft rewards, and evidence repair](assets/teaser.png)
 
