@@ -57,7 +57,7 @@
 
 ![Matched replay and evidence-only supervision](assets/matched-replay.png)
 
-### Repair example (schematic)
+### Repair example
 
 ![Single-slot evidence repair on a CLEVRER counterfactual question](assets/evidence-repair.png)
 
