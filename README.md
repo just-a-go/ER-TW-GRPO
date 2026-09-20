@@ -39,6 +39,8 @@ Transfer supported observations between failed responses. Replay affected reason
 
 ## Quick start
 
+**Hardware:** 2 × NVIDIA A100 · BF16 · DeepSpeed ZeRO-3 with CPU offload.
+
 <details>
 <summary>Install and train</summary>
 
